@@ -87,5 +87,6 @@ class NuSoapServer extends CI_Controller {
 ```
 
 With this, we have almost done our NuSOAP web services server. All we need now is a detail in the configuration. In the file “application / config / routes.php” we have to add the following path:
-
+```
 $route['nuSoapServer/getMember/wsdl'] = 'nuSoapServer/index/wsdl';
+```

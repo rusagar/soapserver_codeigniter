@@ -5,7 +5,21 @@ Creating a SOAP server in CodeIgniter
 
 Let’s take a look what NuSOAP is and what is used for the library NuSOAP. This library, which is very useful and widely used, is a toolkit to develop Web Services under the PHP language. It consists of a series of classes that will make us much easier to develop Web Services. Provides support for the development of clients (those consuming Web Services) and servers (those that provide the Web Services). Once we know what NuSOAP is, we move on to integrate it into our development framework. The first thing that we need to do is to download the library, unzip it and include it in the directory application/libraries of our CodeIgniter framework
 
-Once we know what NuSOAP is, we move on to integrate it into our development framework. The first thing that we need to do is to <a href="http://sourceforge.net/projects/nusoap/files/nusoap/0.7.3/nusoap-0.7.3.zip/download" target="_blank">download the library</a>, unzip it and include it in the directory application/libraries of our CodeIgniter framework
+Once we know what NuSOAP is, we move on to integrate it into our development framework. The first thing that we need to do is to <a href="http://sourceforge.net/projects/nusoap/files/nusoap/0.7.3/nusoap-0.7.3.zip/download" target="_blank">download the library</a>, unzip it and include it in the directory application/libraries of our CodeIgniter framework. The easiest way to integrate this library in CodeIgniter is by creating our own “pseudo” CodeIgniter’s library, which at the same time allows the use of the real NuSOAP library, that we have previously downloaded. 
+
+We move on to develop our own library CodeIgniter, for that, we have to create a new file called nuSoap_lib.php (or whatever you want to call it, the name depends only on your imagination) in the application/libraries, the same level as the directory that contains the NuSOAP library.
+
+In the file nuSoap_lib.php we have to put the following code:
+
+```
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+      class nuSoap_lib{
+          function Nusoap_lib(){
+               require_once(str_replace("\\","/",APPPATH).'libraries/NuSOAP/lib/nusoap'.EXT); //If we are executing this script on a Windows server
+          }
+      }
+?>
+```
 
 NuSOAP server will be a controller which does not need to have its own view file, since it will only be accessed to perform certain tasks (even interact with the models if it would be necessary) and return their results via web to its remote client, so at no time it will be necessary to show the data on the screen directly from the server.
 
